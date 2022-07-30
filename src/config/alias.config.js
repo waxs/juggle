@@ -3,11 +3,6 @@
  ---------------------------------------- */
 
 const alias = [
- 
-    {
-        name: '_chain',
-        replace: '_c'
-    },
 
     {
         name: '_config',

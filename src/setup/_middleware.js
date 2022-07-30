@@ -32,7 +32,6 @@ function middleware(obj) {
 					const data = this._deconstruct(set);
 					
 					_isType(this._config.log) === 'boolean' && this._config.log && console.log(method, data);
-					this._chain.push(fn.name);
 
 					if(!this._exists(data.name) && method !== 'create') {
 						console.error(`This set does not exists: ${ data.name } called on ${ method }.`);
