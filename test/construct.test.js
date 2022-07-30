@@ -1,0 +1,72 @@
+/** ----------------------------------------
+    Juggle
+ ---------------------------------------- */
+
+import Juggle from '@build/juggle.pkg';
+
+/** ----------------------------------------
+    Test construct()
+ ---------------------------------------- */
+
+describe('Construct new values to the set', () => {
+    test('New keys should be assigned', () => {
+        const juggle = new Juggle();
+
+        const users = [
+            {
+                name: {
+                    first: 'Sander',
+                    last: 'Hidding'
+                },
+                birthday: '12-02-1989',
+                city: 'Deventer'
+            },
+            {
+                name: {
+                    first: 'Peter',
+                    last: 'Phillips'
+                },
+                birthday: '27-07-1981',
+                city: 'Amsterdam'
+            }
+        ];
+
+        const set = juggle
+            .create('user', users)
+            .construct('user', item => {
+                const [day, month, year] = item.birthday.split('-');
+                const date = new Date(year, month - 1, day);
+
+                return {
+                    iso: date.toISOString(),
+                    unix: date.getTime()
+                };
+            })
+            .select('user');
+
+        const output = [
+            {
+                name: {
+                    first: 'Sander',
+                    last: 'Hidding'
+                },
+                birthday: '12-02-1989',
+                iso: '1989-02-11T23:00:00.000Z',
+                unix: 603241200000,
+                city: 'Deventer'
+            },
+            {
+                name: {
+                    first: 'Peter',
+                    last: 'Phillips'
+                },
+                birthday: '27-07-1981',
+                iso: '1981-07-26T22:00:00.000Z',
+                unix: 365032800000,
+                city: 'Amsterdam'
+            }
+        ];
+
+        expect(set).toEqual(output);
+    });
+});
