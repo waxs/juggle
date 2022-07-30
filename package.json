@@ -1,0 +1,51 @@
+{
+  "name": "@waxs/juggle",
+  "version": "1.0.0",
+  "description": "Juggle your objects and data sets, combine, relate or create new segments.",
+  "main": "dist/juggle.pkg.js",
+  "scripts": {
+    "serve": "webpack-dev-server --env=dev",
+    "start": "webpack --env=dev --config webpack.config.js --progress --profile --colors --watch",
+    "base": "webpack --env=dev --config webpack.config.js --progress --profile --bail",
+    "build": "webpack --env=prod --config webpack.config.js --progress --profile --bail",
+    "package": "webpack --env=package --config webpack.config.js --progress --profile --bail",
+    "prod": "npm run base & npm run build & npm run package",
+    "test": "jest"
+  },
+  "author": "Sander Hidding",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/waxs/juggle"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
+    "jest": "^24.9.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "testMatch": [
+      "**/test/*.test.js"
+    ],
+    "moduleNameMapper": {
+      "^@build(.*)$": "<rootDir>/dist$1",
+      "^@js(.*)$": "<rootDir>/src$1",
+      "^@mock(.*)$": "<rootDir>/mockup$1",
+      "^@util(.*)$": "<rootDir>/src/util$1"
+    }
+  }
+}
