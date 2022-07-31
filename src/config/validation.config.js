@@ -19,6 +19,10 @@ const validate = config => {
         if(config.warning) console.error(msg);
     };
 
+    /** ----------------------------------------
+        Type Validation
+     ---------------------------------------- */
+
     const type = (arg, validate) => {
         const type = _isType(arg);
         if(type !== validate) error(`Given ${ arg } should be of ${ validate } while ${ type } given`);
@@ -26,7 +30,7 @@ const validate = config => {
 
     /** ----------------------------------------
         Validations
-    ---------------------------------------- */
+     ---------------------------------------- */
 
     return {
 
