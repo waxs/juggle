@@ -23,7 +23,7 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { array } data related to set
  */
 
-function select({ path, data }, unique = true) {
+function select({ path, data }, unique = false) {
     const set = !path || !path.length 
         ? data || null 
         : _structure(data, item => {
@@ -32,7 +32,7 @@ function select({ path, data }, unique = true) {
 
     const array = _valueToArray(set);
 
-    return unique ? _unique(array) : array; 
+    return unique ? _unique(array, unique) : array; 
 };
 
 /** ----------------------------------------
