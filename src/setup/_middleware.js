@@ -5,10 +5,16 @@
 import _isType from '@util/check/_isType';
 
 /** ----------------------------------------
+    Validation
+ ---------------------------------------- */
+
+import validate from '@js/config/validation.config';
+
+/** ----------------------------------------
     Excluded Watchers
  ---------------------------------------- */
 
-const execluded = [
+const execluded = [ 
 	'flush',
 	'info',
 	'log',
@@ -46,7 +52,10 @@ function middleware(obj) {
 						event: name => this._config.watch && !execluded.includes(method) && this.event.dispatch(method, this.select(name)),
 						...this._deconstruct(set)
 					});
-					
+			
+					const validation = validate(this._config);
+					validation[method] && validation[method](...[data].concat(args));
+
 					this._config.log && console.log(method, data);
 
 					if(!this._exists(data.name) && method !== 'create') {
