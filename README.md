@@ -11,8 +11,8 @@ Getting started is easy, just initiate a new set of data and start manipulating 
 ```javascript
 const juggle = new Juggle();
 
-juggle.create("user", {
-  name: "Sander",
+juggle.create('user', {
+  name: 'Sander',
   year: 1989,
 });
 ```
@@ -22,27 +22,27 @@ You just created a set called `user`. Next you are able to either merge multiple
 ```javascript
 const users = [
   {
-    name: "Sander Hidding",
+    name: 'Sander Hidding',
     role: 1,
   },
   {
-    name: "Peter Phillips",
+    name: 'Peter Phillips',
     role: 1,
   },
 ];
 
 const role = {
   id: 1,
-  name: "Developer",
+  name: 'Developer',
 };
 
 juggle
-  .create("user", users)
-  .create("role", role)
-  .join("user", "role")
-  .limit("user", 1)
-  .flatten("user")
-  .log("user");
+  .create('user', users)
+  .create('role', role)
+  .join('user', 'role')
+  .limit('user', 1)
+  .flatten('user')
+  .log('user');
 
 // [
 //     {
@@ -93,8 +93,8 @@ The following examples gives an impression on how to use the package. Note that 
 ```javascript
 const item = {
   name: {
-    first: "Sander",
-    last: "Hidding",
+    first: 'Sander',
+    last: 'Hidding',
   },
 };
 ```
@@ -107,13 +107,13 @@ The add function will either add a new item to an excisting set or add a new key
 
 ```javascript
 juggle
-  .create("user", {
-    name: "Sander",
-    city: "Deventer",
+  .create('user', {
+    name: 'Sander',
+    city: 'Deventer',
   })
-  .add("user", {
-    name: "Peter",
-    city: "Amsterdam",
+  .add('user', {
+    name: 'Peter',
+    city: 'Amsterdam',
   });
 ```
 
@@ -122,12 +122,12 @@ This will result in the following set:
 ```javascript
 [
   {
-    name: "Sander",
-    city: "Deventer",
+    name: 'Sander',
+    city: 'Deventer',
   },
   {
-    name: "Peter",
-    city: "Amsterdam",
+    name: 'Peter',
+    city: 'Amsterdam',
   },
 ];
 ```
@@ -140,17 +140,17 @@ The assign function can create new keys based of an excisting item within the se
 const currentYear = new Date().getFullYear();
 
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander",
+      name: 'Sander',
       year: 1989,
     },
     {
-      name: "Peter",
+      name: 'Peter',
       year: 1970,
     },
   ])
-  .assign("user.age", (item) => {
+  .assign('user.age', (item) => {
     return currentYear - item.year;
   });
 ```
@@ -178,12 +178,12 @@ The bundle method can bundle multiple keys into one, specified as the set path. 
 
 ```javascript
 juggle
-  .create("user", {
-    first: "Sander",
-    last: "Hidding",
-    city: "Deventer",
+  .create('user', {
+    first: 'Sander',
+    last: 'Hidding',
+    city: 'Deventer',
   })
-  .bundle("user.name", ["first", "last"]);
+  .bundle('user.name', ['first', 'last']);
 ```
 
 This will result in the following set:
@@ -192,10 +192,10 @@ This will result in the following set:
 [
   {
     name: {
-      first: "Sander",
-      last: "Hidding",
+      first: 'Sander',
+      last: 'Hidding',
     },
-    city: "Deventer",
+    city: 'Deventer',
   },
 ];
 ```
@@ -206,17 +206,17 @@ The chunk method will created smaller chunks of data based on a given set. The a
 
 ```javascript
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander",
+      name: 'Sander',
       year: 1989,
     },
     {
-      name: "Peter",
+      name: 'Peter',
       year: 1970,
     },
   ])
-  .chunk("user", 1);
+  .chunk('user', 1);
 ```
 
 This will result in the following set:
@@ -225,12 +225,12 @@ This will result in the following set:
 [
   [
     {
-      name: "Sander",
+      name: 'Sander',
       year: 1989,
     },
   ][
     {
-      name: "Peter",
+      name: 'Peter',
       year: 1970,
     }
   ],
@@ -243,14 +243,14 @@ Using the construct method it's possible to reconstruct an item with a callback.
 
 ```javascript
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander",
-      birthday: "12-02-1989",
+      name: 'Sander',
+      birthday: '12-02-1989',
     },
   ])
-  .construct("user", (item) => {
-    const [day, month, year] = item.birthday.split("-");
+  .construct('user', (item) => {
+    const [day, month, year] = item.birthday.split('-');
     const date = new Date(year, month - 1, day);
 
     return {
@@ -265,9 +265,9 @@ This will result in the following set:
 ```javascript
 [
   {
-    name: "Sander",
-    birthday: "12-02-1989",
-    iso: "1989-02-12T00:00:00.000Z",
+    name: 'Sander',
+    birthday: '12-02-1989',
+    iso: '1989-02-12T00:00:00.000Z',
     unix: 603241200000,
   },
 ];
@@ -278,10 +278,10 @@ This will result in the following set:
 The create method will create a new set within the store. The data can either be an object or an array with multiple objects. The set can be retrieved using the `select` method, refering to the given name of the set. A set name can not use a dot notation!
 
 ```javascript
-juggle.create("user", [
+juggle.create('user', [
   {
-    name: "Sander",
-    country: "The Netherlands",
+    name: 'Sander',
+    country: 'The Netherlands',
     year: 1989,
   },
 ]);
@@ -291,16 +291,16 @@ It's also possible to create multiple sets and merge them using either the `join
 
 ```javascript
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander",
+      name: 'Sander',
       role: 1,
     },
   ])
-  .create("role", [
+  .create('role', [
     {
       id: 1,
-      name: "Developer",
+      name: 'Developer',
     },
   ]);
 ```
@@ -313,16 +313,16 @@ This method will flatten objects contained within a set. This function is recurs
 
 ```javascript
 juggle
-  .create("user", [
+  .create('user', [
     {
       name: {
-        first: "Sander",
-        last: "Hidding",
+        first: 'Sander',
+        last: 'Hidding',
       },
       year: 1989,
     },
   ])
-  .flatten("user");
+  .flatten('user');
 ```
 
 This will result in the following set:
@@ -342,7 +342,7 @@ This will result in the following set:
 The flush method will remove a set from the Juggle store.
 
 ```javascript
-juggle.flush("user");
+juggle.flush('user');
 ```
 
 #### join(set, target)
@@ -371,10 +371,10 @@ The same thing can be achieved being more explicit, if an `id` is not presented 
 ```javascript
 [
   {
-    name: "Sander Hidding",
+    name: 'Sander Hidding',
     role: {
       id: 1,
-      name: "Developer",
+      name: 'Developer',
     },
   },
 ];
@@ -390,12 +390,12 @@ The remove method can remove multiple keys at once. The second argument takes th
 
 ```javascript
 juggle
-  .create("user", {
-    first: "Sander",
-    last: "Hidding",
-    city: "Deventer",
+  .create('user', {
+    first: 'Sander',
+    last: 'Hidding',
+    city: 'Deventer',
   })
-  .remove("user", ["first", "last"]);
+  .remove('user', ['first', 'last']);
 ```
 
 This will result in the following set:
@@ -403,7 +403,7 @@ This will result in the following set:
 ```javascript
 [
   {
-    city: "Deventer",
+    city: 'Deventer',
   },
 ];
 ```
@@ -414,18 +414,18 @@ This rename method is used for reassigning keys within items, you can either nes
 
 ```javascript
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander Hidding",
+      name: 'Sander Hidding',
       contact: {
-        phone: "+31 0570 123456",
-        city: "Deventer",
+        phone: '+31 0570 123456',
+        city: 'Deventer',
       },
     },
   ])
-  .rename("user", {
-    "contact.phone": "phone",
-    "contact.city": "address.city",
+  .rename('user', {
+    'contact.phone': 'phone',
+    'contact.city': 'address.city',
   });
 ```
 
@@ -434,10 +434,10 @@ This will result in the following set:
 ```javascript
 [
   {
-    name: "Sander Hidding",
-    phone: "+31 0570 123456",
+    name: 'Sander Hidding',
+    phone: '+31 0570 123456',
     address: {
-      city: "Deventer",
+      city: 'Deventer',
     },
   },
 ];
@@ -449,23 +449,23 @@ A segment represents part of an excisting data set. For example, let's say each 
 
 ```javascript
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander Hidding",
+      name: 'Sander Hidding',
       role: {
         id: 1,
-        name: "Developer",
+        name: 'Developer',
       },
     },
     {
-      name: "Peter Phillips",
+      name: 'Peter Phillips',
       role: {
         id: 2,
-        name: "Projectmanger",
+        name: 'Projectmanger',
       },
     },
   ])
-  .segment("user.role");
+  .segment('user.role');
 ```
 
 Using the `select()` method a new data set will be available as `role` (as such: `juggle.select('role')`).
@@ -474,11 +474,11 @@ Using the `select()` method a new data set will be available as `role` (as such:
 [
   {
     id: 1,
-    name: "Developer",
+    name: 'Developer',
   },
   {
     id: 2,
-    name: "Projectmanger",
+    name: 'Projectmanger',
   },
 ];
 ```
@@ -507,7 +507,7 @@ juggle
 This will result in the following set, while `.select('user')` would have returned the created set.
 
 ```javascript
-["Sander Hidding", "Peter Phillips"];
+['Sander Hidding', 'Peter Phillips'];
 ```
 
 If you need to return a unique set of items a second paramater is available. It is recommended that the set holds a unique key like an `id` and pass it as a argument. By default this options will be `false`.
@@ -518,7 +518,7 @@ If you need to return a unique set of items a second paramater is available. It 
 | .select('user.name')       | Will return the `name` of each item within the set `user`      |
 | .select('user.name', true) | Will return unique values based on `name` from the `user` set  |
 | .select('user', 'name')    | Will return unique objects based on `name` from the `user` set |
-
+§
 The following options are available but not recommended! What will happen using `.select('user', true)` is that a sample is taking from the array (the first item), it will look for 3 keys and try to find unique values. If an `id` is present, this will be the first key that is being checked, this has the highest outcome of a unqiue dataset. If this is not presented it will look for multiple other keys (strings or numbers). In the case a name (for example) is used more then once, or an age is presented more than once this will cause complications. The same thing is true for doing this process manually (shown in the second example below).
 
 | type                             | description                                                                         |
@@ -550,14 +550,14 @@ If you need a consitent output and need to make sure that all objects match a ce
 
 ```javascript
 juggle
-  .create("user", {
+  .create('user', {
     name: {
-      first: "Sander",
-      last: "Hidding",
+      first: 'Sander',
+      last: 'Hidding',
     },
-    birthday: "12-02-1989",
+    birthday: '12-02-1989',
   })
-  .schema("user", {
+  .schema('user', {
     name: {
       value: Object,
       required: true,
@@ -570,19 +570,19 @@ If a key is left unspecified it will be validated as not required. You can also 
 
 ```javascript
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander",
-      city: "Deventer",
-      birthday: "12-02-1989",
+      name: 'Sander',
+      city: 'Deventer',
+      birthday: '12-02-1989',
     },
     {
       name: false,
-      city: "Amsterdam",
-      birthday: "12-02-1989",
+      city: 'Amsterdam',
+      birthday: '12-02-1989',
     },
   ])
-  .schema("user", {
+  .schema('user', {
     name: [String, Boolean],
     birthday: String,
   });
@@ -603,7 +603,7 @@ const juggle = new Juggle({
 Make sure that watchers are declared before manipulation.
 
 ```javascript
-juggle.event.on("limit", (data) => {
+juggle.event.on('limit', (data) => {
   console.log(data);
 });
 
@@ -618,24 +618,24 @@ juggle.event.on("limit", (data) => {
 // ]
 
 juggle
-  .create("user", [
+  .create('user', [
     {
-      name: "Sander Hidding",
+      name: 'Sander Hidding',
       role: 1,
     },
     {
-      name: "Peter Phillips",
+      name: 'Peter Phillips',
       role: 1,
     },
   ])
-  .create("role", {
+  .create('role', {
     id: 1,
-    name: "Developer",
+    name: 'Developer',
   })
-  .join("user", "role")
-  .limit("user", 1)
-  .flatten("user")
-  .log("user");
+  .join('user', 'role')
+  .limit('user', 1)
+  .flatten('user')
+  .log('user');
 
 // [
 //     {
