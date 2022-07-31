@@ -19,9 +19,7 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { this } instance
  */
 
-function remove({ name, data, event }, keys) {
-    if(!keys) console.error('No keys have been specified to remove.');
-    
+function remove({ name, data, event }, keys) {    
     _structure(data, item => {
         keys && _valueToArray(keys).forEach(key => {
             item[key] && _deletePath(item, key);
