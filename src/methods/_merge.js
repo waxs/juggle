@@ -22,6 +22,8 @@ function merge(set, target) {
     this._replace(set.name, copy);
     this._replace(name, data);
 
+    set.event && set.event(name);
+
     return this;
 }
 

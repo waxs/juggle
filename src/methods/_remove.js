@@ -19,7 +19,7 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { this } instance
  */
 
-function remove({ data }, keys) {
+function remove({ name, data, event }, keys) {
     if(!keys) console.error('No keys have been specified to remove.');
     
     _structure(data, item => {
@@ -27,6 +27,8 @@ function remove({ data }, keys) {
             item[key] && _deletePath(item, key);
         });
     });
+
+    event && event(name);
 
     return this;
 }

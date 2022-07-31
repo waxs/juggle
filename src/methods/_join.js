@@ -18,6 +18,8 @@ function join(set, target) {
     this._replace(set.name, data);
     this.flush(_target.name);
 
+    set.event && set.event(set.name);
+
     return this;
 }
 

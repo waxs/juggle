@@ -560,6 +560,64 @@ juggle
 
 If a validation failed a error will be returned with the related object. 
 
+### Validation
+
+You can watch changes being made if the `watch` option has been set to true. Watcher can help you hook into a certain event taking place while manipulating your data set.
+
+```javascript
+const juggle = new Juggle({
+    watch: true
+});
+```
+
+Make sure that watchers are declared before manipulation.
+
+```javascript
+juggle.event.on('limit', data => {
+    console.log(data);
+});
+
+// [ 
+//     { 
+//         name: 'Sander Hidding', 
+//         role: { 
+//             id: 1, 
+//             name: 'Developer' 
+//         } 
+//     } 
+// ]
+
+juggle
+    .create('user', [
+        {
+            name: 'Sander Hidding',
+            role: 1
+        },
+        {
+            name: 'Peter Phillips',
+            role: 1
+        }
+    ])
+    .create('role', {
+        id: 1,
+        name: 'Developer'
+    })
+    .join('user', 'role')
+    .limit('user', 1)
+    .flatten('user')
+    .log('user');
+
+// [
+//     {
+//         name: 'Sander Hidding', 
+//         role_id: 1, 
+//         role_name: 'Developer'
+//     }
+// ]
+```
+
+Most actions are supported except for `flush`, `info`, `log`, `schema`, `select`, they will return the manipulated data set as shown above. In this case the `join()` method has already been called, the set is limited to a size of 1, but the `flatten()` method has not yet been executed. 
+
 ## About
 
 Check out my [personal website](http://sanderhidding.nl) for more information. That's all folks! Cheers.

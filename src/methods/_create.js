@@ -12,12 +12,14 @@
  * @return { this } instance
  */
 
-function create({ name }, data) {
+function create({ name, event }, data) {
     if(this._exists(name)) return console.error(`This set is already active: ${ name }`);
 
     this._replace(name, data, {   
         chunks: false
     });
+
+    event && event(name);
  
     return this;
 }

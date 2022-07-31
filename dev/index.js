@@ -15,7 +15,12 @@ const Juggle = require('../dist/juggle.pkg');
  */
 
 const juggle = new Juggle({
+    watch: true,
     log: false
+});
+
+juggle.event.on('limit', data => {
+    console.log('LIMIT:', data);
 });
 
 juggle

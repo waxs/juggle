@@ -21,11 +21,13 @@ import _structure from '@util/function/_structure';
  * @return { this } instance
  */
 
-function assign({ path, data }, callback) {
+function assign({ name, path, data, event }, callback) {
     _structure(data, item => {
         _createPath(item, path, callback(item));
         return item; 
     });
+
+    event && event(name);
 
     return this;
 }; 

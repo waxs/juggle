@@ -20,7 +20,7 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { this } instance
  */
 
-function bundle({ data, path }, keys) {
+function bundle({ name, data, path, event }, keys) {
     if(!path) return console.error('No path given, use "[set].[path]" to target a key.');
     if(!keys) console.error('No keys have been specified to bundle.');
     
@@ -30,6 +30,8 @@ function bundle({ data, path }, keys) {
             delete item[key];
         });
     });
+
+    event && event(name);
 
     return this; 
 }

@@ -42,6 +42,10 @@ class Juggle extends Core {
             log: {
                 value: Boolean,
                 required: false
+            },
+            watch: {
+                value: Boolean,
+                required: false
             }
         }); 
 

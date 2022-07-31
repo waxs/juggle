@@ -41,7 +41,7 @@ const removeEmptyObj = obj => {
  * @return { this } instance
  */
 
-function rename({ data }, options) {
+function rename({ name, data, event }, options) {
     const entries = Object.entries(options);
 
     _structure(data, item => {
@@ -57,6 +57,8 @@ function rename({ data }, options) {
     
         return removeEmptyObj(item); 
     });
+
+    event && event(name);
   
     return this;
 }

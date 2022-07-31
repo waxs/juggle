@@ -22,7 +22,7 @@ import _structure from '@util/function/_structure';
  * @return { this } instance
  */
 
-function construct({ name, data }, callback) {
+function construct({ name, data, event }, callback) {
     let array = [];
 
     _structure(data, item => {
@@ -35,6 +35,8 @@ function construct({ name, data }, callback) {
     });
 
     this._replace(name, array);
+
+    event && event(name);
 
     return this;
 }

@@ -20,9 +20,10 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { this } instance
  */
 
-function limit({ name, data }, size = 10) {
+function limit({ name, data, event }, size = 10) {
     const set = data.slice(0, size);
     this._replace(name, set);
+    event && event(name);
     return this; 
 }
 

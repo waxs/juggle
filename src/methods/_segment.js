@@ -19,7 +19,7 @@ import _path from '@util/function/_path';
  * @return { this } instance
  */
 
-function segment({ path, data }, name) { 
+function segment({ path, data, event }, name) { 
     const _name = name || path[path.length - 1];
 
     const _data = data.map(item => {
@@ -28,6 +28,8 @@ function segment({ path, data }, name) {
     });
 
     this._replace(_name, _data);
+
+    event && event(name);
 
     return this;
 }

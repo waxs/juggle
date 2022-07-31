@@ -1,20 +1,25 @@
 /** ----------------------------------------
-    Util
+    Utils
  ---------------------------------------- */
 
-import error from '@util/debug/_error';
+import _error from '@util/debug/_error';
 
 /** ----------------------------------------
     Validate
  ---------------------------------------- */
 
 const validate = (name, check) => {
-    return error(check, `A callback is mandatory for "${ name }", specify the event on('name', () => { ... }).`);
+    return _error(check, `A callback is mandatory for "${ name }", specify the event on('name', () => { ... }).`);
 };
 
 /** ----------------------------------------
     Emit
- ---------------------------------------- */
+---------------------------------------- */
+
+/**
+ * Simple event emitter for handeling watcher
+ * and dispatching events.
+ */
 
 class Emit {
 

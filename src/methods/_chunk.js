@@ -20,7 +20,7 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { this } instance
  */
 
-function chunk({ name, data }, amount = 10) {
+function chunk({ name, data, event }, amount = 10) {
     const chunks = _chunk(_valueToArray(data), amount);
  
     this._replace(name, chunks, {
@@ -29,6 +29,8 @@ function chunk({ name, data }, amount = 10) {
         length: _sumArrays(chunks)
     });
     
+    event && event(name);
+
     return this;
 }  
  

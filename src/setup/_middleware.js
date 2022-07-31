@@ -5,6 +5,18 @@
 import _isType from '@util/check/_isType';
 
 /** ----------------------------------------
+    Excluded Watchers
+ ---------------------------------------- */
+
+const execluded = [
+	'flush',
+	'info',
+	'log',
+	'schema',
+	'select'
+];
+
+/** ----------------------------------------
     Middleware
  ---------------------------------------- */
 
@@ -29,13 +41,17 @@ function middleware(obj) {
 			prototype[method] = function(...args) {
 				if(!method.includes('_')) {
 					const set = args.shift();
-					const data = this._deconstruct(set);
+
+					const data = Object.assign({
+						event: name => this._config.watch && !execluded.includes(method) && this.event.dispatch(method, this.select(name)),
+						...this._deconstruct(set)
+					});
 					
-					_isType(this._config.log) === 'boolean' && this._config.log && console.log(method, data);
+					this._config.log && console.log(method, data);
 
 					if(!this._exists(data.name) && method !== 'create') {
 						console.error(`This set does not exists: ${ data.name } called on ${ method }.`);
-						return null;
+						return null; 
 					};
  
 					return fn.call(this, ...[data].concat(args));

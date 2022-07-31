@@ -21,7 +21,7 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { this } instance
  */
 
-function add({ name, path, data }, value = null) {
+function add({ name, path, data, event }, value = null) {
     if(path) { 
         _structure(data, item => {
             _createPath(item, path, value);
@@ -33,6 +33,8 @@ function add({ name, path, data }, value = null) {
         array.push(value);
         this._replace(name, array);
     }
+
+    event && event(name);
   
     return this; 
 }
