@@ -617,7 +617,7 @@ juggle
 // ]
 ```
 
-Most actions are supported except for `flush`, `info`, `log`, `schema`, `select`, they will return the manipulated data set as shown above. In this case the `join()` method has already been called, the set is limited to a size of 1, but the `flatten()` method has not yet been executed, the final output will be flatten while you are able to work with the data inbetween manipulations.
+Most actions are supported except for `flush`, `info`, `log`, `schema`, `select`, they will return the manipulated data set as shown above. In this case the `join()` method has already been called, the set is limited to a size of 1, but the `flatten()` method has not yet been executed, the final output will be flattened while you are able to work with the data inbetween manipulations.
 
 ## About
 
