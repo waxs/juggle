@@ -43,6 +43,10 @@ class Juggle extends Core {
                 value: Boolean,
                 required: false
             },
+            warnings: {
+                value: Boolean,
+                required: false
+            },
             watch: {
                 value: Boolean,
                 required: false
