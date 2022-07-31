@@ -518,7 +518,7 @@ If you need to return a unique set of items a second paramater is available. It 
 | .select('user.name')       | Will return the `name` of each item within the set `user`      |
 | .select('user.name', true) | Will return unique values based on `name` from the `user` set  |
 | .select('user', 'name')    | Will return unique objects based on `name` from the `user` set |
-§
+
 The following options are available but not recommended! What will happen using `.select('user', true)` is that a sample is taking from the array (the first item), it will look for 3 keys and try to find unique values. If an `id` is present, this will be the first key that is being checked, this has the highest outcome of a unqiue dataset. If this is not presented it will look for multiple other keys (strings or numbers). In the case a name (for example) is used more then once, or an age is presented more than once this will cause complications. The same thing is true for doing this process manually (shown in the second example below).
 
 | type                             | description                                                                         |
