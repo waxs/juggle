@@ -23,15 +23,11 @@ import _structure from '@util/function/_structure';
  */
 
 function construct({ name, data, event }, callback) {
-    let array = [];
-
-    _structure(data, item => {
-        array.push({
+    const array = _structure(data, item => {
+        return {
             ...item,
             ...callback(item)
-        });
-
-        return array;
+        };
     });
 
     this._replace(name, array);
