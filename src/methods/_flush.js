@@ -12,7 +12,6 @@
  */
 
 function flush({ name }) {
-    if(!this._exists(name)) return console.error(`This set is not active: ${ name }`);
     delete this._data[name];
     return this;
 }  
