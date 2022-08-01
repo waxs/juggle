@@ -7,7 +7,7 @@ import _structure from '@util/function/_structure';
 import _valueToArray from '@util/format/_valueToArray';
 
 /** ----------------------------------------
-    Unique Key
+    Unique Object
  ---------------------------------------- */
 
 const uniqueObj = (array, keys = ['id']) => {
