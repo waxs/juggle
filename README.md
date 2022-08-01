@@ -13,7 +13,7 @@ const juggle = new Juggle();
 
 juggle.create('user', {
   name: 'Sander',
-  year: 1989,
+  year: 1989
 });
 ```
 
@@ -23,11 +23,11 @@ You just created a set called `user`. Next you are able to either merge multiple
 const users = [
   {
     name: 'Sander Hidding',
-    role: 1,
+    role: 1
   },
   {
     name: 'Peter Phillips',
-    role: 1,
+    role: 1
   },
 ];
 
@@ -94,7 +94,7 @@ The following examples gives an impression on how to use the package. Note that 
 const item = {
   name: {
     first: 'Sander',
-    last: 'Hidding',
+    last: 'Hidding'
   },
 };
 ```
@@ -109,11 +109,11 @@ The add function will either add a new item to an excisting set or add a new key
 juggle
   .create('user', {
     name: 'Sander',
-    city: 'Deventer',
+    city: 'Deventer'
   })
   .add('user', {
     name: 'Peter',
-    city: 'Amsterdam',
+    city: 'Amsterdam'
   });
 ```
 
@@ -123,11 +123,11 @@ This will result in the following set:
 [
   {
     name: 'Sander',
-    city: 'Deventer',
+    city: 'Deventer'
   },
   {
     name: 'Peter',
-    city: 'Amsterdam',
+    city: 'Amsterdam'
   },
 ];
 ```
@@ -143,11 +143,11 @@ juggle
   .create('user', [
     {
       name: 'Sander',
-      year: 1989,
+      year: 1989
     },
     {
       name: 'Peter',
-      year: 1970,
+      year: 1970
     },
   ])
   .assign('user.age', (item) => {
@@ -181,7 +181,7 @@ juggle
   .create('user', {
     first: 'Sander',
     last: 'Hidding',
-    city: 'Deventer',
+    city: 'Deventer'
   })
   .bundle('user.name', ['first', 'last']);
 ```
@@ -193,9 +193,9 @@ This will result in the following set:
   {
     name: {
       first: 'Sander',
-      last: 'Hidding',
+      last: 'Hidding'
     },
-    city: 'Deventer',
+    city: 'Deventer'
   },
 ];
 ```
@@ -209,11 +209,11 @@ juggle
   .create('user', [
     {
       name: 'Sander',
-      year: 1989,
+      year: 1989
     },
     {
       name: 'Peter',
-      year: 1970,
+      year: 1970
     },
   ])
   .chunk('user', 1);
@@ -226,12 +226,13 @@ This will result in the following set:
   [
     {
       name: 'Sander',
-      year: 1989,
+      year: 1989
     },
-  ][
+  ],
+  [
     {
       name: 'Peter',
-      year: 1970,
+      year: 1970
     }
   ],
 ];
@@ -246,7 +247,7 @@ juggle
   .create('user', [
     {
       name: 'Sander',
-      birthday: '12-02-1989',
+      birthday: '12-02-1989'
     },
   ])
   .construct('user', (item) => {
@@ -255,7 +256,7 @@ juggle
 
     return {
       iso: date.toISOString(),
-      unix: date.getTime(),
+      unix: date.getTime()
     };
   });
 ```
@@ -268,7 +269,7 @@ This will result in the following set:
     name: 'Sander',
     birthday: '12-02-1989',
     iso: '1989-02-12T00:00:00.000Z',
-    unix: 603241200000,
+    unix: 603241200000
   },
 ];
 ```
@@ -282,7 +283,7 @@ juggle.create('user', [
   {
     name: 'Sander',
     country: 'The Netherlands',
-    year: 1989,
+    year: 1989
   },
 ]);
 ```
@@ -294,13 +295,13 @@ juggle
   .create('user', [
     {
       name: 'Sander',
-      role: 1,
+      role: 1
     },
   ])
   .create('role', [
     {
       id: 1,
-      name: 'Developer',
+      name: 'Developer'
     },
   ]);
 ```
@@ -317,9 +318,9 @@ juggle
     {
       name: {
         first: 'Sander',
-        last: 'Hidding',
+        last: 'Hidding'
       },
-      year: 1989,
+      year: 1989
     },
   ])
   .flatten('user');
@@ -331,7 +332,7 @@ This will result in the following set:
 [
     {
         name_first: 'Sander',
-        name_last: 'Hidding'
+        name_last: 'Hidding',
         year: 1989
     }
 ]
@@ -374,7 +375,7 @@ The same thing can be achieved being more explicit, if an `id` is not presented 
     name: 'Sander Hidding',
     role: {
       id: 1,
-      name: 'Developer',
+      name: 'Developer'
     },
   },
 ];
@@ -393,7 +394,7 @@ juggle
   .create('user', {
     first: 'Sander',
     last: 'Hidding',
-    city: 'Deventer',
+    city: 'Deventer'
   })
   .remove('user', ['first', 'last']);
 ```
@@ -403,7 +404,7 @@ This will result in the following set:
 ```javascript
 [
   {
-    city: 'Deventer',
+    city: 'Deventer'
   },
 ];
 ```
@@ -419,13 +420,13 @@ juggle
       name: 'Sander Hidding',
       contact: {
         phone: '+31 0570 123456',
-        city: 'Deventer',
+        city: 'Deventer'
       },
     },
   ])
   .rename('user', {
     'contact.phone': 'phone',
-    'contact.city': 'address.city',
+    'contact.city': 'address.city'
   });
 ```
 
@@ -437,7 +438,7 @@ This will result in the following set:
     name: 'Sander Hidding',
     phone: '+31 0570 123456',
     address: {
-      city: 'Deventer',
+      city: 'Deventer'
     },
   },
 ];
@@ -454,14 +455,14 @@ juggle
       name: 'Sander Hidding',
       role: {
         id: 1,
-        name: 'Developer',
+        name: 'Developer'
       },
     },
     {
       name: 'Peter Phillips',
       role: {
         id: 2,
-        name: 'Projectmanger',
+        name: 'Projectmanger'
       },
     },
   ])
@@ -474,11 +475,11 @@ Using the `select()` method a new data set will be available as `role` (as such:
 [
   {
     id: 1,
-    name: 'Developer',
+    name: 'Developer'
   },
   {
     id: 2,
-    name: 'Projectmanger',
+    name: 'Projectmanger'
   },
 ];
 ```
@@ -493,7 +494,7 @@ The select method retrieves a set from the Juggle store. The select method can a
 juggle
     .create('user', [
         {
-            name: 'Sander Hidding'
+            name: 'Sander Hidding',
             age: 33
         },
         {
@@ -553,16 +554,16 @@ juggle
   .create('user', {
     name: {
       first: 'Sander',
-      last: 'Hidding',
+      last: 'Hidding'
     },
-    birthday: '12-02-1989',
+    birthday: '12-02-1989'
   })
   .schema('user', {
     name: {
       value: Object,
-      required: true,
+      required: true
     },
-    birthday: String,
+    birthday: String
   });
 ```
 
@@ -574,17 +575,17 @@ juggle
     {
       name: 'Sander',
       city: 'Deventer',
-      birthday: '12-02-1989',
+      birthday: '12-02-1989'
     },
     {
       name: false,
       city: 'Amsterdam',
-      birthday: '12-02-1989',
+      birthday: '12-02-1989'
     },
   ])
   .schema('user', {
     name: [String, Boolean],
-    birthday: String,
+    birthday: String
   });
 ```
 
@@ -621,16 +622,16 @@ juggle
   .create('user', [
     {
       name: 'Sander Hidding',
-      role: 1,
+      role: 1
     },
     {
       name: 'Peter Phillips',
-      role: 1,
+      role: 1
     },
   ])
   .create('role', {
     id: 1,
-    name: 'Developer',
+    name: 'Developer'
   })
   .join('user', 'role')
   .limit('user', 1)
