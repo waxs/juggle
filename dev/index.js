@@ -23,6 +23,16 @@ juggle.event.on('limit', data => {
     console.log('LIMIT:', data);
 });
 
+// [
+//     {
+//         name: 'Sander Hidding', 
+//         role: {
+//             id: 1, 
+//             name: 'Developer'
+//         }
+//     }
+// ]
+
 juggle
     .create('user', [
         {
