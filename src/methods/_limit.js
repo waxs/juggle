@@ -1,12 +1,4 @@
 /** ----------------------------------------
-    Utils
- ---------------------------------------- */
-
-import _createPath from '@util/format/_createPath'; 
-import _structure from '@util/function/_structure'; 
-import _valueToArray from '@util/format/_valueToArray'; 
-
-/** ----------------------------------------
     Limit
  ---------------------------------------- */
 
