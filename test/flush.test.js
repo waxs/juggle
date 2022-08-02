@@ -8,8 +8,8 @@ import Juggle from '@build/juggle.pkg';
     Test flush()
  ---------------------------------------- */
 
-describe('Flush the set', () => {
-    test('The set should be deleted', () => {
+describe('Test flush() method', () => {
+    test('A set should be deleted', () => {
         const juggle = new Juggle();
 
         const user = {

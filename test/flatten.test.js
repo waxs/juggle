@@ -8,8 +8,8 @@ import Juggle from '@build/juggle.pkg';
     Test flatten()
  ---------------------------------------- */
 
-describe('Flatten the set', () => {
-    test('A single object should be flattened', () => {
+describe('Test flatten() method', () => {
+    test('A single item should be flat', () => {
         const juggle = new Juggle();
 
         const user = {
@@ -36,7 +36,7 @@ describe('Flatten the set', () => {
         expect(set).toEqual(output);
     });
 
-    test('An array of objects should be flattened', () => {
+    test('Items within a set should be flat', () => {
         const juggle = new Juggle();
 
         const users = [
@@ -72,6 +72,52 @@ describe('Flatten the set', () => {
                 name_last: 'Phillips',
                 city: 'Amsterdam'
             }
+        ];
+
+        expect(set).toEqual(output);
+    });
+
+    test('Items within a chunked set should be flat', () => {
+        const juggle = new Juggle();
+
+        const users = [
+            {
+                name: {
+                    first: 'Sander',
+                    last: 'Hidding'
+                },
+                city: 'Deventer'
+            },
+            {
+                name: {
+                    first: 'Peter',
+                    last: 'Phillips'
+                },
+                city: 'Amsterdam'
+            }
+        ];
+
+        const set = juggle
+            .create('user', users)
+            .chunk('user', 1)
+            .flatten('user')
+            .select('user');
+
+        const output = [
+            [
+                {
+                    name_first: 'Sander',
+                    name_last: 'Hidding',
+                    city: 'Deventer'
+                }
+            ],
+            [
+                {
+                    name_first: 'Peter',
+                    name_last: 'Phillips',
+                    city: 'Amsterdam'
+                }
+            ]
         ];
 
         expect(set).toEqual(output);

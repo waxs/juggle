@@ -8,7 +8,7 @@ import Juggle from '@build/juggle.pkg';
     Test chunk()
  ---------------------------------------- */
 
-describe('Chunk the set in smaller chunks', () => {
+describe('Test chunk() method', () => {
     test('The data should be chunked', () => {
         const juggle = new Juggle();
 
