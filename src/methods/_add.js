@@ -4,6 +4,7 @@
 
 import _createPath from '@util/format/_createPath'; 
 import _structure from '@util/function/_structure'; 
+import _unchunk from '@util/function/_unchunk'; 
 import _valueToArray from '@util/format/_valueToArray'; 
 
 /** ----------------------------------------
@@ -21,7 +22,7 @@ import _valueToArray from '@util/format/_valueToArray';
  * @return { this } instance
  */
 
-function add({ name, path, data, event }, value = null) {
+function add({ name, path, data, info, event }, value = null) {
     if(path) { 
         _structure(data, item => {
             _createPath(item, path, value);
@@ -29,9 +30,20 @@ function add({ name, path, data, event }, value = null) {
     }
 
     if(!path) {
-        const array = _valueToArray(data);
-        array.push(value);
-        this._replace(name, array);
+        if(info.chunks) {
+            const array = _unchunk(data);
+            array.push(value);
+
+            this._replace(name, array);
+            this.chunk(name, info.size);
+        }
+
+        if(!info.chunks) {
+            const array = _valueToArray(data);
+            array.push(value);
+            
+            this._replace(name, array);
+        }
     }
 
     event && event(name);

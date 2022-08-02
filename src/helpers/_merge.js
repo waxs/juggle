@@ -2,9 +2,11 @@
     Utils
 ---------------------------------------- */
 
+import _chunk from '@util/function/_chunk';
 import _createPath from '@util/format/_createPath';
 import _path from '@util/function/_path';
 import _structure from '@util/function/_structure';
+import _unchunk from '@util/function/_unchunk';
 import _valueToArray from '@util/format/_valueToArray';
 
 /** ----------------------------------------
@@ -39,13 +41,16 @@ const findItem = (data, keys, value) => {
  */
 
 function merge(set, target) {
-    const setArray = _valueToArray(set.data);
-    const targetArray = _valueToArray(target.data);
+    const setInfo = set.info;
+    const targetInfo = target.info;
+
+    const setArray = _valueToArray(setInfo.chunks ? _unchunk(set.data) : set.data);
+    const targetArray = _valueToArray(targetInfo.chunks ? _unchunk(target.data) : target.data);
 
     const setPath = convertPath(setArray, set.path, target.name);
     const targetPath = convertPath(targetArray, target.path, 'id');
 
-    return _structure(setArray, item => {
+    const data = _structure(setArray, item => {
         const setValue = _path(item, setPath);
         const targetValue = findItem(targetArray, targetPath, setValue);
         
@@ -53,6 +58,11 @@ function merge(set, target) {
         
         return item;
     });
+
+    setInfo.chunks && _chunk(set.data, setInfo.size);
+    targetInfo.chunks && _chunk(target.data, targetInfo.size);
+
+    return data;
 }
 
 /** ----------------------------------------

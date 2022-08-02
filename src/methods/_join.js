@@ -1,4 +1,10 @@
 /** ----------------------------------------
+    Utils
+---------------------------------------- */
+
+import _chunk from '@util/function/_chunk';
+
+/** ----------------------------------------
     Join
  ---------------------------------------- */
 
@@ -15,13 +21,15 @@ function join(set, target) {
     const _target = this._deconstruct(target);
     const data = this._merge(set, _target);
 
-    this._replace(set.name, data);
+    const replace = set.info.chunks ? _chunk(data, set.info.size) : data;
+
+    this._replace(set.name, replace);
     this.flush(_target.name);
 
     set.event && set.event(set.name);
 
     return this;
-}
+} 
 
 /** ----------------------------------------
     Export
