@@ -4,9 +4,13 @@
 
 Juggle is a simple package for manipulating objects. With Juggle you are able to quickly flip an object around and recreate an objects structure. This specially beneficial for messy endpoints that need that bit of extra care before passing it on to the frontend or a component. It provides a clean and easy to read syntax for manipulating objects, setting up sets and segments.
 
+## Download Juggle JS
+
+Juggle can be found in the NPM registry, install the module using `npm i @waxs/juggle`, for yarn users use the following command in your terminal `yarn add @waxs/juggle`.
+
 ## Initiate Juggle JS
 
-Getting started is easy, just initiate a new set of data and start manipulating the set with the help of Juggle.
+Getting started is easy, just initiate a new set of data and start manipulating the set with the help of Juggle. You can play around in a [sandbox online](https://codesandbox.io/s/waxs-juggle-epjynh?file=/src/index.js).
 
 ```javascript
 const juggle = new Juggle();
