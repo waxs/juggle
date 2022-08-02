@@ -10,7 +10,7 @@
     "build": "webpack --env=prod --config webpack.config.js --progress --profile --bail",
     "package": "webpack --env=package --config webpack.config.js --progress --profile --bail",
     "prod": "npm run base & npm run build & npm run package",
-    "test": "TZ=UTC+1 jest"
+    "test": "TZ=UTC jest"
   },
   "author": "Sander Hidding",
   "license": "MIT",

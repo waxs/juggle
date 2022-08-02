@@ -51,8 +51,8 @@ describe('Test construct() method', () => {
                     last: 'Hidding'
                 },
                 birthday: '12-02-1989',
-                iso: '1989-02-11T23:00:00.000Z',
-                unix: 603241200000,
+                iso: '1989-02-12T00:00:00.000Z',
+                unix: 603244800000,
                 city: 'Deventer'
             },
             {
@@ -61,8 +61,8 @@ describe('Test construct() method', () => {
                     last: 'Phillips'
                 },
                 birthday: '27-07-1981',
-                iso: '1981-07-26T22:00:00.000Z',
-                unix: 365032800000,
+                iso: '1981-07-27T00:00:00.000Z',
+                unix: 365040000000,
                 city: 'Amsterdam'
             }
         ];
@@ -114,8 +114,8 @@ describe('Test construct() method', () => {
                         last: 'Hidding'
                     },
                     birthday: '12-02-1989',
-                    iso: '1989-02-11T23:00:00.000Z',
-                    unix: 603241200000,
+                    iso: '1989-02-12T00:00:00.000Z',
+                    unix: 603244800000,
                     city: 'Deventer'
                 }
             ],
@@ -126,8 +126,8 @@ describe('Test construct() method', () => {
                         last: 'Phillips'
                     },
                     birthday: '27-07-1981',
-                    iso: '1981-07-26T22:00:00.000Z',
-                    unix: 365032800000,
+                    iso: '1981-07-27T00:00:00.000Z',
+                    unix: 365040000000,
                     city: 'Amsterdam'
                 }
             ]
