@@ -1,18 +1,4 @@
 /** ----------------------------------------
-    Utils
- ---------------------------------------- */
-
-import _error from '@util/debug/_error';
-
-/** ----------------------------------------
-    Validate
- ---------------------------------------- */
-
-const validate = (name, check) => {
-    return _error(check, `A callback is mandatory for "${ name }", specify the event on('name', () => { ... }).`);
-};
-
-/** ----------------------------------------
     Emit
 ---------------------------------------- */
 
@@ -60,13 +46,15 @@ class Emit {
      ---------------------------------------- */
 
     on(name, callback) {
-        if(!validate(name, !callback)) {
+        if(callback) {
             this._handle(name);
 
             this._events[name].push({
                 callback
             });
         }
+
+        if(!callback) throw new Error(`A callback is mandatory for "${ name }", specify the event on('name', () => { ... }).`);
     }
 
     /** ----------------------------------------
