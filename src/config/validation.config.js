@@ -56,11 +56,7 @@ const validate = config => {
             if(data !== undefined) error(`This set (${ name }) has already been created.`);
         },
 
-        flush: ({ data }) => {
-            if(data !== undefined) error(`This set (${ name }) is unavailable.`);
-        },
-
-        join: ({ name }, target) => {
+        join: ({ name, data }, target) => {
             if(!name && !target) error(`The join method requires a name and target.`);
             type(target, 'string');
         },
