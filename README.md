@@ -238,6 +238,8 @@ This will result in the following set:
 ];
 ```
 
+👀 Warning: although supported, it's recommended to use the chunk after manipulation to enhance performance. 
+
 #### construct(set, callback)
 
 Using the construct method it's possible to reconstruct an item with a callback. The original structure of the item will be kept, and can be extended upon. Be aware that this function does not support path definitions.
@@ -385,6 +387,8 @@ The same thing can be achieved being more explicit, if an `id` is not presented 
 
 This merge method will do the same as a `join()`, however, it will create a new unique data set based on the merger, leaving both individual data sets intact. In the example shown within the `join()` method the same output will be generated, but a new set is available as `user_role` this can be retrieved using the `select()` method (as such: `juggle.select('user_role')`).
 
+👀 Warning: if a source set (either `set` or `target`) had been chunked before merging, the newly created set will not be chunked.
+
 #### remove(set, keys)
 
 The remove method can remove multiple keys at once. The second argument takes the keys that need to be removed.
@@ -484,6 +488,8 @@ Using the `select()` method a new data set will be available as `role` (as such:
 ];
 ```
 
+👀 Warning: if the set had been chunked before segmenting, the newly created segment set will not be chunked.
+
 ### Selectors
 
 #### select(set, unique)
@@ -518,16 +524,16 @@ If you need to return a unique set of items a second paramater is available. It 
 | .select('user')            | Will return the set `user`                                     |
 | .select('user.name')       | Will return the `name` of each item within the set `user`      |
 | .select('user.name', true) | Will return unique values based on `name` from the `user` set  |
-| .select('user', 'name')    | Will return unique objects based on `name` from the `user` set |
 
 The following options are available but not recommended! What will happen using `.select('user', true)` is that a sample is taking from the array (the first item), it will look for 3 keys and try to find unique values. If an `id` is present, this will be the first key that is being checked, this has the highest outcome of a unqiue dataset. If this is not presented it will look for multiple other keys (strings or numbers). In the case a name (for example) is used more then once, or an age is presented more than once this will cause complications. The same thing is true for doing this process manually (shown in the second example below).
 
 | type                             | description                                                                         |
 | -------------------------------- | ----------------------------------------------------------------------------------- |
 | .select('user', true)            | Will try (!!) to return all unique items from `user` set based                      |
+| .select('user', 'name')          | Will try to return unique objects based on `name` from the `user` set               |
 | .select('user', ['name', 'age']) | Will try to return all unique objects based on `name` and `age` from the `user` set |
 
-👀 Warning: be aware that setting the `unique` parameter to true, or settings more then one key for a set of objects, that does not include a unique value (like an `id`) key may result in unexpected results.
+👀 Warning: be aware that setting the `unique` parameter to true, or settings more then one key for a set of objects, may result in unexpected results.
 
 #### info(set)
 
