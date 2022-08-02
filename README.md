@@ -1,6 +1,6 @@
 # Juggle JS
 
-![Testing](https://github.com/waxs/juggle/workflows/Testing/badge.svg)
+![test](https://github.com/waxs/juggle/workflows/test/badge.svg?branch=master)
 
 Juggle is a simple package for manipulating objects. With Juggle you are able to quickly flip an object around and recreate an objects structure. This specially beneficial for messy endpoints that need that bit of extra care before passing it on to the frontend or a component. It provides a clean and easy to read syntax for manipulating objects, setting up sets and segments.
 
@@ -238,7 +238,7 @@ This will result in the following set:
 ];
 ```
 
-👀 Warning: although supported, it's recommended to use the chunk after manipulation to enhance performance. 
+👀 Warning: although supported, it's recommended to use the chunk method after manipulation to enhance performance. 
 
 #### construct(set, callback)
 
