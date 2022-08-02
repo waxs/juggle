@@ -47,10 +47,13 @@ const flat = (obj, parent, item = {}) => {
  * @return { this } instance
  */
 
-function flatten({ name, data, event }) {
-    const flatten = _structure(data, item => flat(item));
-    this._replace(name, flatten);
+function flatten({ name, data, info, event }) {
+    const set = _structure(data, flat);
+
+    this._replace(name, set);
+
     event && event(name);
+    
     return this;
 } 
  
